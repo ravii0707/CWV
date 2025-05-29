@@ -94,5 +94,5 @@ public partial class LoanApplication
     [InverseProperty("LoanApplications")]
     public virtual User User { get; set; } = null!;
 
-    public DateTime StartDate { get; set; }
+    //public DateTime StartDate { get; set; }
 }

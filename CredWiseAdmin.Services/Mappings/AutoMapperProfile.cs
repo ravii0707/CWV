@@ -34,8 +34,8 @@ namespace CredWiseAdmin.Services.Mappings
                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => src.CreatedAt))
                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.IsActive))
                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
-               .ForMember(dest => dest.ApplicationId, opt => opt.MapFrom(src => src.LoanApplicationId))
-               .ForMember(dest => dest.LoanProductName, opt => opt.MapFrom(src => src.LoanProduct.Name));
+               .ForMember(dest => dest.LoanApplicationId, opt => opt.MapFrom(src => src.LoanApplicationId))
+               .ForMember(dest => dest.LoanProductId, opt => opt.MapFrom(src => src.LoanProduct.LoanProductId));
 
 
             // Loan bank statement mappings
@@ -45,14 +45,17 @@ namespace CredWiseAdmin.Services.Mappings
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
                 .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true));
 
-            // Loan repayment mappings
-            CreateMap<LoanRepaymentSchedule, LoanRepaymentDto>();
-            CreateMap<PaymentTransaction, PaymentTransactionDto>();
-            CreateMap<PaymentTransactionDto, PaymentTransaction>()
-                .ForMember(dest => dest.PaymentDate, opt => opt.MapFrom(src => DateTime.UtcNow))
-                .ForMember(dest => dest.TransactionStatus, opt => opt.MapFrom(src => "Pending"))
-                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true));
-            CreateMap<PaymentTransaction, PaymentTransactionResponseDto>();
+            
+            // Repayment plan mappings
+            CreateMap<RepaymentPlanDTO, LoanRepaymentSchedule>()
+                .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => DateOnly.FromDateTime(src.DueDate)))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => "Pending")) // Default status
+                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true))
+                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
+                .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => "System"));
+
+            CreateMap<LoanRepaymentSchedule, RepaymentPlanDTO>()
+                .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => src.DueDate.ToDateTime(TimeOnly.MinValue)));
 
             // FD mappings
             CreateMap<FDTypeDto, Fdtype>()

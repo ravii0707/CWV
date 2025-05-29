@@ -465,7 +465,7 @@
   {
     "ContainingType": "CredWiseAdmin.API.Controllers.LoanRepaymentsController",
     "Method": "ApplyPenalty",
-    "RelativePath": "api/LoanRepayments/{repaymentId}/penalty",
+    "RelativePath": "api/LoanRepayments/apply-penalty/{repaymentId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -477,6 +477,32 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CredWiseAdmin.API.Controllers.LoanRepaymentsController",
+    "Method": "GenerateEmiPlan",
+    "RelativePath": "api/LoanRepayments/generate-emi-plan",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emiPlanDto",
+        "Type": "CredWiseAdmin.Core.DTOs.EmiPlanDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[CredWiseAdmin.Core.DTOs.LoanRepaymentDto, CredWiseAdmin.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "CredWiseAdmin.API.Controllers.LoanRepaymentsController",

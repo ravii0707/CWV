@@ -12,10 +12,12 @@ namespace CredWiseAdmin.API.Controllers
     public class LoanRepaymentsController : ControllerBase
     {
         private readonly ILoanRepaymentService _loanRepaymentService;
+        private readonly ILogger<LoanRepaymentsController> _logger;
 
-        public LoanRepaymentsController(ILoanRepaymentService loanRepaymentService)
+        public LoanRepaymentsController(ILoanRepaymentService loanRepaymentService, ILogger<LoanRepaymentsController> logger)
         {
             _loanRepaymentService = loanRepaymentService;
+            _logger = logger;
         }
 
         [HttpGet("loan/{loanApplicationId}")]
@@ -32,16 +34,33 @@ namespace CredWiseAdmin.API.Controllers
             return Ok(transaction);
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpPost("{repaymentId}/penalty")]
+        [HttpPost("apply-penalty/{repaymentId}")]
         public async Task<IActionResult> ApplyPenalty(int repaymentId)
         {
-            var result = await _loanRepaymentService.ApplyPenaltyAsync(repaymentId);
-            if (!result)
+            try
             {
-                return BadRequest();
+                var response = await _loanRepaymentService.ApplyPenaltyAsync(repaymentId);
+
+                if (response.Success == false)
+                {
+                    return BadRequest(response);
+                }
+
+                return Ok(response);
             }
-            return NoContent();
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error applying penalty to repayment {RepaymentId}", repaymentId);
+                return StatusCode(500, new ApiResponse<bool>
+                {
+                    Success = false,
+                    Message = "An error occurred while applying penalty",
+                    Errors = new List<ApiError> { new ApiError {
+                Code = "SERVER_ERROR",
+                Description = ex.Message
+            }}
+                });
+            }
         }
 
         [HttpGet("user/{userId}/pending")]
@@ -79,6 +98,29 @@ namespace CredWiseAdmin.API.Controllers
             catch (Exception)
             {
                 return StatusCode(500, new { message = "An unexpected error occurred. Please try again later." });
+            }
+        }
+
+        // Add to LoanRepaymentsController.cs
+        [HttpPost("generate-emi-plan")]
+        public async Task<ActionResult<IEnumerable<LoanRepaymentDto>>> GenerateEmiPlan([FromBody] EmiPlanDto emiPlanDto)
+        {
+            try
+            {
+                var emiPlan = await _loanRepaymentService.GenerateEmiPlanAsync(emiPlanDto);
+                return Ok(emiPlan);
+            }
+            catch (BadRequestException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (ServiceException ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred while generating the EMI plan." });
             }
         }
     }

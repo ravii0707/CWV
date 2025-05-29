@@ -706,7 +706,7 @@
         }
       }
     },
-    "/api/LoanRepayments/{repaymentId}/penalty": {
+    "/api/LoanRepayments/apply-penalty/{repaymentId}": {
       "post": {
         "tags": [
           "LoanRepayments"
@@ -821,6 +821,68 @@
         "tags": [
           "LoanRepayments"
         ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LoanRepaymentDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LoanRepaymentDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LoanRepaymentDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LoanRepayments/generate-emi-plan": {
+      "post": {
+        "tags": [
+          "LoanRepayments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiPlanDto"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiPlanDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiPlanDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmiPlanDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -1126,6 +1188,41 @@
           "password": {
             "minLength": 6,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmiPlanDto": {
+        "required": [
+          "interestRate",
+          "loanId",
+          "tenureInMonths"
+        ],
+        "type": "object",
+        "properties": {
+          "loanId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tenureInMonths": {
+            "maximum": 24,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "interestRate": {
+            "maximum": 100,
+            "minimum": 1,
+            "type": "number",
+            "format": "double"
+          },
+          "loanAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
@@ -1531,6 +1628,19 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1554,38 +1664,41 @@
           "amount",
           "loanApplicationId",
           "paymentMethod",
-          "repaymentId"
+          "transactionReference"
         ],
         "type": "object",
         "properties": {
           "loanApplicationId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "repaymentId": {
+            "maximum": 2147483647,
+            "minimum": 1,
             "type": "integer",
             "format": "int32"
           },
           "amount": {
+            "minimum": 0.01,
             "type": "number",
             "format": "double"
           },
           "paymentMethod": {
-            "minLength": 1,
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "transactionReference": {
+            "maxLength": 100,
+            "minLength": 0,
             "type": "string"
           }
         },
         "additionalProperties": false
       },
       "PaymentTransactionResponseDto": {
-        "required": [
-          "amount",
-          "loanApplicationId",
-          "paymentMethod",
-          "repaymentId"
-        ],
         "type": "object",
         "properties": {
+          "transactionId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "loanApplicationId": {
             "type": "integer",
             "format": "int32"
@@ -1598,23 +1711,27 @@
             "type": "number",
             "format": "double"
           },
-          "paymentMethod": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "transactionId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "paymentDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "paymentMethod": {
+            "type": "string",
+            "nullable": true
           },
           "transactionStatus": {
             "type": "string",
             "nullable": true
           },
           "transactionReference": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
             "type": "string",
             "nullable": true
           }
