@@ -1,0 +1,6 @@
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Repository\obj\Release\net8.0\CredWiseAdmin.Repository.csproj.AssemblyReference.cache
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Repository\obj\Release\net8.0\CredWiseAdmin.Repository.GeneratedMSBuildEditorConfig.editorconfig
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Repository\obj\Release\net8.0\CredWiseAdmin.Repository.AssemblyInfoInputs.cache
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Repository\obj\Release\net8.0\CredWiseAdmin.Repository.AssemblyInfo.cs
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Repository\obj\Release\net8.0\CredWiseAdmin.Repository.csproj.CoreCompileInputs.cache
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Repository\obj\Release\net8.0\CredWiseAdmin.Repository.sourcelink.json

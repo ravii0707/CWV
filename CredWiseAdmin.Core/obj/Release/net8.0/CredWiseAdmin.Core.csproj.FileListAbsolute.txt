@@ -1,0 +1,13 @@
+C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\bin\Release\net8.0\CredWiseAdmin.Core.deps.json
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\bin\Release\net8.0\CredWiseAdmin.Core.dll
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\bin\Release\net8.0\CredWiseAdmin.Core.pdb
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\CredWiseAdmin.Core.csproj.AssemblyReference.cache
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\CredWiseAdmin.Core.GeneratedMSBuildEditorConfig.editorconfig
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\CredWiseAdmin.Core.AssemblyInfoInputs.cache
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\CredWiseAdmin.Core.AssemblyInfo.cs
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\CredWiseAdmin.Core.csproj.CoreCompileInputs.cache
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\CredWiseAdmin.Core.sourcelink.json
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\CredWiseAdmin.Core.dll
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\refint\CredWiseAdmin.Core.dll
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\CredWiseAdmin.Core.pdb
+C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Core\obj\Release\net8.0\ref\CredWiseAdmin.Core.dll

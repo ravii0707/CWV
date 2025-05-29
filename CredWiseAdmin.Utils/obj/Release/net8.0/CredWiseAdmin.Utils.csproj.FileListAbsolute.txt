@@ -1,0 +1,15 @@
+C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\bin\Release\net8.0\CredWiseAdmin.Utils.deps.json
+C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\bin\Release\net8.0\CredWiseAdmin.Utils.runtimeconfig.json
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\bin\Release\net8.0\CredWiseAdmin.Utils.dll
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\bin\Release\net8.0\CredWiseAdmin.Utils.pdb
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\CredWiseAdmin.Utils.csproj.AssemblyReference.cache
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\CredWiseAdmin.Utils.GeneratedMSBuildEditorConfig.editorconfig
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\CredWiseAdmin.Utils.AssemblyInfoInputs.cache
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\CredWiseAdmin.Utils.AssemblyInfo.cs
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\CredWiseAdmin.Utils.csproj.CoreCompileInputs.cache
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\CredWiseAdmin.Utils.sourcelink.json
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\CredWiseAdmin.Utils.dll
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\refint\CredWiseAdmin.Utils.dll
+c:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\CredWiseAdmin.Utils.pdb
+C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\CredWiseAdmin.Utils.genruntimeconfig.cache
+C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.Utils\obj\Release\net8.0\ref\CredWiseAdmin.Utils.dll
