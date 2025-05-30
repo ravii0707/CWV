@@ -254,72 +254,159 @@ namespace CredWiseAdmin.Services.Implementation
             }
         }
 
-        // Add to LoanRepaymentService.cs
-        public async Task<IEnumerable<LoanRepaymentDto>> GenerateEmiPlanAsync(EmiPlanDto emiPlanDto)
+
+
+        // In LoanRepaymentService.cs
+        //public async Task<IEnumerable<LoanRepaymentSchedule>> GenerateAndSaveEmiPlanAsync(EmiPlanDto emiPlanDto)
+        //{
+        //    try
+        //    {
+        //        _logger.LogInformation("Generating and saving EMI plan for loan ID: {LoanId}", emiPlanDto.LoanId);
+
+        //        // Validate input
+        //        if (emiPlanDto.LoanAmount <= 0)
+        //            throw new BadRequestException("Loan amount must be greater than zero");
+
+        //        if (emiPlanDto.TenureInMonths <= 0)
+        //            throw new BadRequestException("Tenure must be greater than zero");
+
+        //        if (emiPlanDto.InterestRate <= 0)
+        //            throw new BadRequestException("Interest rate must be greater than zero");
+
+        //        // Calculate EMI
+        //        decimal monthlyInterestRate = emiPlanDto.InterestRate / 100 / 12;
+        //        decimal emi = emiPlanDto.LoanAmount * monthlyInterestRate *
+        //                     (decimal)Math.Pow(1 + (double)monthlyInterestRate, emiPlanDto.TenureInMonths) /
+        //                     (decimal)(Math.Pow(1 + (double)monthlyInterestRate, emiPlanDto.TenureInMonths) - 1);
+
+        //        var repaymentSchedules = new List<LoanRepaymentSchedule>();
+        //        decimal remainingPrincipal = emiPlanDto.LoanAmount;
+        //        DateTime dueDate = emiPlanDto.StartDate;
+
+        //        for (int i = 1; i <= emiPlanDto.TenureInMonths; i++)
+        //        {
+        //            decimal interestComponent = remainingPrincipal * monthlyInterestRate;
+        //            decimal principalComponent = emi - interestComponent;
+
+        //            // Adjust for last installment
+        //            if (i == emiPlanDto.TenureInMonths)
+        //            {
+        //                principalComponent = remainingPrincipal;
+        //                emi = principalComponent + interestComponent;
+        //            }
+
+        //            var repayment = new LoanRepaymentSchedule
+        //            {
+        //                LoanApplicationId = emiPlanDto.LoanId,
+        //                InstallmentNumber = i,
+        //                DueDate = DateOnly.FromDateTime(dueDate),
+        //                PrincipalAmount = principalComponent,
+        //                InterestAmount = interestComponent,
+        //                TotalAmount = emi,
+        //                Status = "Pending",
+        //                CreatedAt = DateTime.UtcNow,
+        //                ModifiedAt = DateTime.UtcNow,
+        //                CreatedBy = "System",
+        //                ModifiedBy = "System",
+        //                IsActive = true
+        //            };
+
+        //            // Save each repayment to database
+        //            await _loanRepaymentRepository.AddAsync(repayment);
+        //            repaymentSchedules.Add(repayment);
+
+        //            remainingPrincipal -= principalComponent;
+        //            dueDate = dueDate.AddMonths(1);
+        //        }
+
+        //        _logger.LogInformation("Successfully generated and saved EMI plan for loan ID: {LoanId}", emiPlanDto.LoanId);
+        //        return repaymentSchedules;
+        //    }
+        //    catch (CustomException)
+        //    {
+        //        throw;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, "Error generating EMI plan for loan ID: {LoanId}", emiPlanDto.LoanId);
+        //        throw new ServiceException("An error occurred while generating the EMI plan. Please try again later.");
+        //    }
+        //}
+
+
+        public async Task<IEnumerable<LoanRepaymentSchedule>> GenerateAndSaveEmiPlanAsync(EmiPlanDto emiPlanDto)
         {
             try
             {
-                _logger.LogInformation("Generating EMI plan for loan ID: {LoanId}", emiPlanDto.LoanId);
+                _logger.LogInformation("Generating and saving EMI plan for loan ID: {LoanId}", emiPlanDto.LoanId);
 
                 // Validate input
                 if (emiPlanDto.LoanAmount <= 0)
-                {
                     throw new BadRequestException("Loan amount must be greater than zero");
-                }
 
                 if (emiPlanDto.TenureInMonths <= 0)
-                {
                     throw new BadRequestException("Tenure must be greater than zero");
-                }
 
                 if (emiPlanDto.InterestRate <= 0)
-                {
                     throw new BadRequestException("Interest rate must be greater than zero");
-                }
 
-                // Calculate EMI using standard formula
+                // Calculate EMI
                 decimal monthlyInterestRate = emiPlanDto.InterestRate / 100 / 12;
                 decimal emi = emiPlanDto.LoanAmount * monthlyInterestRate *
                              (decimal)Math.Pow(1 + (double)monthlyInterestRate, emiPlanDto.TenureInMonths) /
                              (decimal)(Math.Pow(1 + (double)monthlyInterestRate, emiPlanDto.TenureInMonths) - 1);
 
-                var repaymentSchedule = new List<LoanRepaymentDto>();
+                var repaymentSchedules = new List<LoanRepaymentSchedule>();
                 decimal remainingPrincipal = emiPlanDto.LoanAmount;
                 DateTime dueDate = emiPlanDto.StartDate;
 
+                // Create all repayment schedules first
                 for (int i = 1; i <= emiPlanDto.TenureInMonths; i++)
                 {
                     decimal interestComponent = remainingPrincipal * monthlyInterestRate;
                     decimal principalComponent = emi - interestComponent;
 
-                    // Adjust for last installment to account for any rounding differences
+                    // Adjust for last installment
                     if (i == emiPlanDto.TenureInMonths)
                     {
                         principalComponent = remainingPrincipal;
                         emi = principalComponent + interestComponent;
                     }
 
-                    var repayment = new LoanRepaymentDto
+                    var repayment = new LoanRepaymentSchedule
                     {
                         LoanApplicationId = emiPlanDto.LoanId,
                         InstallmentNumber = i,
-                        DueDate = dueDate.Date,
+                        DueDate = DateOnly.FromDateTime(dueDate),// Using just the date part
                         PrincipalAmount = principalComponent,
                         InterestAmount = interestComponent,
                         TotalAmount = emi,
                         Status = "Pending",
+                        IsActive = true,
                         CreatedAt = DateTime.UtcNow,
-                        ModifiedAt = DateTime.UtcNow
+                        CreatedBy = "System",
+                        ModifiedAt = DateTime.UtcNow,
+                        ModifiedBy = "System"
                     };
 
-                    repaymentSchedule.Add(repayment);
-
+                    repaymentSchedules.Add(repayment);
                     remainingPrincipal -= principalComponent;
                     dueDate = dueDate.AddMonths(1);
                 }
 
-                _logger.LogInformation("Successfully generated EMI plan for loan ID: {LoanId}", emiPlanDto.LoanId);
-                return repaymentSchedule;
+                // Save all repayments to database in a transaction
+                foreach (var repayment in repaymentSchedules)
+                {
+                    await _loanRepaymentRepository.AddAsync(repayment);
+                }
+
+                // Refresh the list to get the actual RepaymentIds from database
+                var savedRepayments = (await _loanRepaymentRepository.GetByLoanApplicationIdAsync(emiPlanDto.LoanId))
+                    .OrderBy(r => r.InstallmentNumber)
+                    .ToList();
+
+                _logger.LogInformation("Successfully generated and saved EMI plan for loan ID: {LoanId}", emiPlanDto.LoanId);
+                return savedRepayments;
             }
             catch (CustomException)
             {

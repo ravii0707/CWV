@@ -107,7 +107,7 @@ namespace CredWiseAdmin.API.Controllers
         {
             try
             {
-                var emiPlan = await _loanRepaymentService.GenerateEmiPlanAsync(emiPlanDto);
+                var emiPlan = await _loanRepaymentService.GenerateAndSaveEmiPlanAsync(emiPlanDto);
                 return Ok(emiPlan);
             }
             catch (BadRequestException ex)
