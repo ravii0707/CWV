@@ -59,6 +59,10 @@ namespace CredWiseAdmin.Services.Mappings
             CreateMap<LoanRepaymentSchedule, RepaymentPlanDTO>()
                 .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => src.DueDate.ToDateTime(TimeOnly.MinValue)));
 
+            CreateMap<LoanRepaymentSchedule, LoanRepaymentDto>()
+    .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => src.DueDate.ToDateTime(TimeOnly.MinValue)))
+    .ReverseMap();
+
             // FD mappings
             CreateMap<FDTypeDto, Fdtype>()
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))

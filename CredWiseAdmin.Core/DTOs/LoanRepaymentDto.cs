@@ -69,6 +69,7 @@ namespace CredWiseAdmin.Core.DTOs
         public string CreatedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
         public string? ModifiedBy { get; set; }
+        public IEnumerable<PaymentTransactionDto>? Transactions { get; set; }
     }
 
     public class PaymentTransactionDto

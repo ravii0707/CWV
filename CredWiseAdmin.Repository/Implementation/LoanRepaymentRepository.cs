@@ -18,12 +18,28 @@ namespace CredWiseAdmin.Repository.Implementation
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
+        //public async Task<IEnumerable<LoanRepaymentSchedule>> GetByLoanApplicationIdAsync(int loanApplicationId)
+        //{
+        //    try
+        //    {
+        //        return await _context.LoanRepaymentSchedules
+        //            .Where(r => r.LoanApplicationId == loanApplicationId)
+        //            .AsNoTracking()
+        //            .ToListAsync();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new RepositoryException("Error fetching loan repayment schedules by LoanApplicationId.", ex);
+        //    }
+        //}
+
         public async Task<IEnumerable<LoanRepaymentSchedule>> GetByLoanApplicationIdAsync(int loanApplicationId)
         {
             try
             {
                 return await _context.LoanRepaymentSchedules
                     .Where(r => r.LoanApplicationId == loanApplicationId)
+                    .Include(r => r.PaymentTransactions) // Include transactions
                     .AsNoTracking()
                     .ToListAsync();
             }

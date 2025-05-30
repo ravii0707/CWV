@@ -1645,6 +1645,13 @@
           "modifiedBy": {
             "type": "string",
             "nullable": true
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentTransactionDto"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
