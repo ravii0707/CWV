@@ -57,6 +57,45 @@ namespace CredWiseAdmin.Services.Implementation
         //    }
         //}
 
+        //public async Task<ApiResponse<IEnumerable<LoanRepaymentDto>>> GetRepaymentsByLoanIdAsync(int loanApplicationId)
+        //{
+        //    try
+        //    {
+        //        _logger.LogInformation("Fetching repayments for loan application {LoanApplicationId}", loanApplicationId);
+
+        //        var repayments = await _loanRepaymentRepository.GetByLoanApplicationIdAsync(loanApplicationId);
+
+        //        // Map to DTO including transactions
+        //        var repaymentDtos = _mapper.Map<IEnumerable<LoanRepaymentDto>>(repayments);
+
+        //        // If you want to include transaction details in the response
+        //        foreach (var dto in repaymentDtos)
+        //        {
+        //            var repayment = repayments.FirstOrDefault(r => r.RepaymentId == dto.RepaymentId);
+        //            if (repayment != null && repayment.PaymentTransactions != null)
+        //            {
+        //                dto.Transactions = _mapper.Map<IEnumerable<PaymentTransactionDto>>(repayment.PaymentTransactions);
+        //            }
+        //        }
+
+        //        return ApiResponse<IEnumerable<LoanRepaymentDto>>.CreateSuccess(
+        //            repaymentDtos,
+        //            repayments.Any() ? "Repayments retrieved successfully" : "No repayments found"
+        //        );
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, "Error fetching repayments for loan application {LoanApplicationId}", loanApplicationId);
+        //        return ApiResponse<IEnumerable<LoanRepaymentDto>>.CreateError(
+        //            "Failed to retrieve repayments",
+        //            new List<ApiError> { new ApiError {
+        //        Code = "REPAYMENT_RETRIEVAL_ERROR",
+        //        Description = ex.Message
+        //    }}
+        //        );
+        //    }
+        //}
+
         public async Task<ApiResponse<IEnumerable<LoanRepaymentDto>>> GetRepaymentsByLoanIdAsync(int loanApplicationId)
         {
             try
@@ -65,18 +104,8 @@ namespace CredWiseAdmin.Services.Implementation
 
                 var repayments = await _loanRepaymentRepository.GetByLoanApplicationIdAsync(loanApplicationId);
 
-                // Map to DTO including transactions
+                // Map to DTO without transactions first
                 var repaymentDtos = _mapper.Map<IEnumerable<LoanRepaymentDto>>(repayments);
-
-                // If you want to include transaction details in the response
-                foreach (var dto in repaymentDtos)
-                {
-                    var repayment = repayments.FirstOrDefault(r => r.RepaymentId == dto.RepaymentId);
-                    if (repayment != null && repayment.PaymentTransactions != null)
-                    {
-                        dto.Transactions = _mapper.Map<IEnumerable<PaymentTransactionDto>>(repayment.PaymentTransactions);
-                    }
-                }
 
                 return ApiResponse<IEnumerable<LoanRepaymentDto>>.CreateSuccess(
                     repaymentDtos,
@@ -95,6 +124,7 @@ namespace CredWiseAdmin.Services.Implementation
                 );
             }
         }
+
 
         public async Task<ApiResponse<PaymentResultDto>> ProcessPaymentAsync(PaymentTransactionDto paymentDto)
         {

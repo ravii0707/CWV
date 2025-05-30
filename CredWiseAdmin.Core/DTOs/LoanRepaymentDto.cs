@@ -74,23 +74,17 @@ namespace CredWiseAdmin.Core.DTOs
 
     public class PaymentTransactionDto
     {
-        [Required(ErrorMessage = "Loan application ID is required")]
-        [Range(1, int.MaxValue, ErrorMessage = "Invalid loan application ID")]
+        public int TransactionId { get; set; }
         public int LoanApplicationId { get; set; }
-
-        [Required(ErrorMessage = "Payment amount is required")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than zero")]
+        public int RepaymentId { get; set; }
         public decimal Amount { get; set; }
-
-        [Required(ErrorMessage = "Payment method is required")]
-        [StringLength(50, ErrorMessage = "Payment method cannot exceed 50 characters")]
+        public DateTime PaymentDate { get; set; }
         public string PaymentMethod { get; set; }
-
-        [Required(ErrorMessage = "Transaction reference is required")]
-        [StringLength(100, ErrorMessage = "Transaction reference cannot exceed 100 characters")]
-        public string TransactionReference { get; set; } = Guid.NewGuid().ToString();
+        public string TransactionStatus { get; set; }
+        public string TransactionReference { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
     }
-
     public class PaymentTransactionResponseDto
     {
         public int TransactionId { get; set; }
@@ -103,6 +97,11 @@ namespace CredWiseAdmin.Core.DTOs
         public string TransactionReference { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
+    }
+
+    public class LoanRepaymentWithTransactionsDto : LoanRepaymentDto
+    {
+        public List<PaymentTransactionResponseDto> Transactions { get; set; }
     }
 
     public class PaymentResultDto

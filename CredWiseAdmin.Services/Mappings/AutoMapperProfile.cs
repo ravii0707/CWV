@@ -55,24 +55,30 @@ namespace CredWiseAdmin.Services.Mappings
                 .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true))
                 .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
                 .ForMember(dest => dest.CreatedBy, opt => opt.MapFrom(src => "System"));
+            CreateMap<PaymentTransaction, PaymentTransactionDto>()
+                .ReverseMap();
+
+            CreateMap<PaymentTransaction, PaymentTransactionResponseDto>()
+                .ReverseMap();
 
             CreateMap<LoanRepaymentSchedule, RepaymentPlanDTO>()
                 .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => src.DueDate.ToDateTime(TimeOnly.MinValue)));
 
             CreateMap<LoanRepaymentSchedule, LoanRepaymentDto>()
     .ForMember(dest => dest.DueDate, opt => opt.MapFrom(src => src.DueDate.ToDateTime(TimeOnly.MinValue)))
+    .ForMember(dest => dest.Transactions, opt => opt.MapFrom(src => src.PaymentTransactions))
     .ReverseMap();
 
             // FD mappings
-            CreateMap<FDTypeDto, Fdtype>()
-                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
-                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true));
-            CreateMap<Fdtype, FDTypeResponseDto>();
-            CreateMap<FDApplicationDto, Fdapplication>()
-                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => "Pending"))
-                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
-                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true));
-            CreateMap<Fdapplication, FDApplicationResponseDto>();
+            //CreateMap<FDTypeDto, Fdtype>()
+            //    .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
+            //    .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true));
+            //CreateMap<Fdtype, FDTypeResponseDto>();
+            //CreateMap<FDApplicationDto, Fdapplication>()
+            //    .ForMember(dest => dest.Status, opt => opt.MapFrom(src => "Pending"))
+            //    .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(src => DateTime.UtcNow))
+            //    .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => true));
+            //CreateMap<Fdapplication, FDApplicationResponseDto>();
 
             // Loan enquiry mappings
             CreateMap<LoanEnquiryDto, LoanEnquiry>()

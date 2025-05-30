@@ -222,186 +222,6 @@
         }
       }
     },
-    "/api/FD/types": {
-      "get": {
-        "tags": [
-          "FD"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FDTypeResponseDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FDTypeResponseDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FDTypeResponseDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/FD/apply": {
-      "post": {
-        "tags": [
-          "FD"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/FDApplicationDto"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FDApplicationDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FDApplicationDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/FDApplicationDto"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/FDApplicationResponseDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FDApplicationResponseDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FDApplicationResponseDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/FD/user/{userId}": {
-      "get": {
-        "tags": [
-          "FD"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FDApplicationResponseDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FDApplicationResponseDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/FDApplicationResponseDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/FD/{id}": {
-      "get": {
-        "tags": [
-          "FD"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/FDApplicationResponseDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FDApplicationResponseDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FDApplicationResponseDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/LoanApplication/all": {
       "get": {
         "tags": [
@@ -1227,140 +1047,6 @@
         },
         "additionalProperties": false
       },
-      "FDApplicationDto": {
-        "required": [
-          "amount",
-          "duration",
-          "fdTypeId",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fdTypeId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "amount": {
-            "type": "number",
-            "format": "double"
-          },
-          "duration": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "FDApplicationResponseDto": {
-        "required": [
-          "amount",
-          "duration",
-          "fdTypeId",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fdTypeId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "amount": {
-            "type": "number",
-            "format": "double"
-          },
-          "duration": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fdApplicationId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "interestRate": {
-            "type": "number",
-            "format": "double"
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "maturityDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "maturityAmount": {
-            "type": "number",
-            "format": "double"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "fdTypeName": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "FDTypeResponseDto": {
-        "required": [
-          "duration",
-          "interestRate",
-          "maxAmount",
-          "minAmount",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "interestRate": {
-            "maximum": 100,
-            "minimum": 0,
-            "type": "number",
-            "format": "double"
-          },
-          "minAmount": {
-            "type": "number",
-            "format": "double"
-          },
-          "maxAmount": {
-            "type": "number",
-            "format": "double"
-          },
-          "duration": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "fdTypeId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
       "GoldLoanDetailDto": {
         "required": [
           "goldPurityRequired",
@@ -1671,34 +1357,47 @@
         "additionalProperties": false
       },
       "PaymentTransactionDto": {
-        "required": [
-          "amount",
-          "loanApplicationId",
-          "paymentMethod",
-          "transactionReference"
-        ],
         "type": "object",
         "properties": {
+          "transactionId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "loanApplicationId": {
-            "maximum": 2147483647,
-            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "repaymentId": {
             "type": "integer",
             "format": "int32"
           },
           "amount": {
-            "minimum": 0.01,
             "type": "number",
             "format": "double"
           },
+          "paymentDate": {
+            "type": "string",
+            "format": "date-time"
+          },
           "paymentMethod": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "transactionStatus": {
+            "type": "string",
+            "nullable": true
           },
           "transactionReference": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

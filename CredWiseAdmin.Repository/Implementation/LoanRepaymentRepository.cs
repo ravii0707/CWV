@@ -37,10 +37,15 @@ namespace CredWiseAdmin.Repository.Implementation
         {
             try
             {
+                //return await _context.LoanRepaymentSchedules
+                //    .Where(r => r.LoanApplicationId == loanApplicationId)
+                //    .Include(r => r.PaymentTransactions) // Include transactions
+                //    .AsNoTracking()
+                //    .ToListAsync();
+
                 return await _context.LoanRepaymentSchedules
+                    .Include(r => r.PaymentTransactions) // Make sure this is present
                     .Where(r => r.LoanApplicationId == loanApplicationId)
-                    .Include(r => r.PaymentTransactions) // Include transactions
-                    .AsNoTracking()
                     .ToListAsync();
             }
             catch (Exception ex)

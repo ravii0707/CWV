@@ -738,12 +738,12 @@ C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.API\
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.API\obj\Debug\net8.0\CredWiseAdmin.API.pdb
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.API\obj\Debug\net8.0\CredWiseAdmin.API.genruntimeconfig.cache
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CredWise\CredWiseAdmin.API\obj\Debug\net8.0\ref\CredWiseAdmin.API.dll
-C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\appsettings.Development.json
-C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\appsettings.json
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\EmailTemplates\LoanApproval.html
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\EmailTemplates\LoanRejection.html
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\EmailTemplates\PaymentConfirmation.html
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\EmailTemplates\UserRegistration.html
+C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\appsettings.Development.json
+C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\appsettings.json
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\CredWiseAdmin.API.staticwebassets.endpoints.json
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\CredWiseAdmin.API.exe
 C:\Learning\CSharp\Training\CredWiseAdmin\New folder\CWV\CredWiseAdmin.API\bin\Debug\net8.0\CredWiseAdmin.API.deps.json

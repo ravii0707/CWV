@@ -12,9 +12,9 @@ public partial class AppDbContext : DbContext
     }
 
     public virtual DbSet<DecisionAppLog> DecisionAppLogs { get; set; }
-    public virtual DbSet<Fdapplication> Fdapplications { get; set; }
-    public virtual DbSet<Fdtransaction> Fdtransactions { get; set; }
-    public virtual DbSet<Fdtype> Fdtypes { get; set; }
+    //public virtual DbSet<Fdapplication> Fdapplications { get; set; }
+    //public virtual DbSet<Fdtransaction> Fdtransactions { get; set; }
+    //public virtual DbSet<Fdtype> Fdtypes { get; set; }
     public virtual DbSet<GoldLoanApplication> GoldLoanApplications { get; set; }
     public virtual DbSet<GoldLoanDetail> GoldLoanDetails { get; set; }
     public virtual DbSet<HomeLoanApplication> HomeLoanApplications { get; set; }
@@ -43,36 +43,36 @@ public partial class AppDbContext : DbContext
                 .HasConstraintName("FK__DecisionA__LoanA__0C85DE4D");
         });
 
-        modelBuilder.Entity<Fdapplication>(entity =>
-        {
-            entity.HasKey(e => e.FdapplicationId).HasName("PK__FDApplic__5A2486C043A982AE");
-            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.HasOne(d => d.Fdtype).WithMany(p => p.Fdapplications)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__FDApplica__FDTyp__0D7A0286");
-            entity.HasOne(d => d.User).WithMany(p => p.Fdapplications)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__FDApplica__UserI__0E6E26BF");
-        });
+        //modelBuilder.Entity<Fdapplication>(entity =>
+        //{
+        //    entity.HasKey(e => e.FdapplicationId).HasName("PK__FDApplic__5A2486C043A982AE");
+        //    entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
+        //    entity.Property(e => e.IsActive).HasDefaultValue(true);
+        //    entity.HasOne(d => d.Fdtype).WithMany(p => p.Fdapplications)
+        //        .OnDelete(DeleteBehavior.ClientSetNull)
+        //        .HasConstraintName("FK__FDApplica__FDTyp__0D7A0286");
+        //    entity.HasOne(d => d.User).WithMany(p => p.Fdapplications)
+        //        .OnDelete(DeleteBehavior.ClientSetNull)
+        //        .HasConstraintName("FK__FDApplica__UserI__0E6E26BF");
+        //});
 
-        modelBuilder.Entity<Fdtransaction>(entity =>
-        {
-            entity.HasKey(e => e.FdtransactionId).HasName("PK__FDTransa__76CF381F1C7EAE46");
-            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.IsActive).HasDefaultValue(true);
-            entity.Property(e => e.TransactionDate).HasDefaultValueSql("(getdate())");
-            entity.HasOne(d => d.Fdapplication).WithMany(p => p.Fdtransactions)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__FDTransac__FDApp__0F624AF8");
-        });
+        //modelBuilder.Entity<Fdtransaction>(entity =>
+        //{
+        //    entity.HasKey(e => e.FdtransactionId).HasName("PK__FDTransa__76CF381F1C7EAE46");
+        //    entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
+        //    entity.Property(e => e.IsActive).HasDefaultValue(true);
+        //    entity.Property(e => e.TransactionDate).HasDefaultValueSql("(getdate())");
+        //    entity.HasOne(d => d.Fdapplication).WithMany(p => p.Fdtransactions)
+        //        .OnDelete(DeleteBehavior.ClientSetNull)
+        //        .HasConstraintName("FK__FDTransac__FDApp__0F624AF8");
+        //});
 
-        modelBuilder.Entity<Fdtype>(entity =>
-        {
-            entity.HasKey(e => e.FdtypeId).HasName("PK__FDTypes__FFD0291BD069EBDD");
-            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
-            entity.Property(e => e.IsActive).HasDefaultValue(true);
-        });
+        //modelBuilder.Entity<Fdtype>(entity =>
+        //{
+        //    entity.HasKey(e => e.FdtypeId).HasName("PK__FDTypes__FFD0291BD069EBDD");
+        //    entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
+        //    entity.Property(e => e.IsActive).HasDefaultValue(true);
+        //});
 
         modelBuilder.Entity<GoldLoanApplication>(entity =>
         {
