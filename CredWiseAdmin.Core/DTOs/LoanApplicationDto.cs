@@ -151,5 +151,7 @@ namespace CredWiseAdmin.Core.DTOs
         public decimal RequestedAmount { get; set; }
         public int RequestedTenure { get; set; }
         public decimal InterestRate { get; set; }
+        //public string? Name { get; set; }
+        public string? EmploymentType { get; set; }
     }
 }

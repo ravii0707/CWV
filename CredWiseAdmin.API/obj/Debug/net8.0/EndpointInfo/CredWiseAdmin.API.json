@@ -1469,6 +1469,10 @@
           "interestRate": {
             "type": "number",
             "format": "double"
+          },
+          "employmentType": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

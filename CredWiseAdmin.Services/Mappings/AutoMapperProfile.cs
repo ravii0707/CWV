@@ -35,7 +35,9 @@ namespace CredWiseAdmin.Services.Mappings
                .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.IsActive))
                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status))
                .ForMember(dest => dest.LoanApplicationId, opt => opt.MapFrom(src => src.LoanApplicationId))
-               .ForMember(dest => dest.LoanProductId, opt => opt.MapFrom(src => src.LoanProduct.LoanProductId));
+               .ForMember(dest => dest.LoanProductId, opt => opt.MapFrom(src => src.LoanProduct.LoanProductId))
+            //.ForMember(dest => dest.Name, opt => opt.MapFrom(src => $"{src.User.FirstName} {src.User.LastName}"))  
+    .ForMember(dest => dest.EmploymentType, opt => opt.MapFrom(src => src.EmploymentType));
 
 
             // Loan bank statement mappings
